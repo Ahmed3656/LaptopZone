@@ -1,0 +1,407 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.line::after {
+    content: "";
+    position: absolute;
+
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100px;
+    height: 3px;
+
+    background-color: #343a40;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+.line:hover::after {
+    width: 150px;
+    height: 3px;
+}
+
+/* ////////////////////////////// header ////////////////////////////// */
+
+.logo {
+    height: 50px;
+}
+
+.header .cart-container {
+    position: relative;
+}
+
+.header .cart-ctr {
+    position: absolute;
+    top: 2px;
+    right: 13px;
+
+    height: 15px;
+    width: 15px;    
+
+    border: 1px solid #343a40;
+    border-radius: 50%;
+    background-color: red;
+
+    text-align: center;
+    line-height: 12px;
+    font-size: 11px;
+}
+
+/* ////////////////////////////// home ////////////////////////////// */
+
+.line {
+    position: relative;
+    color: #343a40;
+}
+
+.best-seller {
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.best-seller:hover {
+    transform: scale(1.05,1.05);
+}
+
+.break-container {
+    margin: 50px auto;
+}
+
+.break-container .scnd {
+    border: 1px solid #a7a7a7;
+}
+
+.break-container img {
+    transition: 0.5s;
+}
+
+.break-container img:hover {
+    transform: scale(0.95, 0.95);
+}
+
+.brand-strap {
+    overflow: hidden;
+    width: 100%;
+}
+
+.brand-logos {
+    white-space: nowrap;
+    width: 100%;
+    animation: rotate 20s linear infinite;
+}
+
+.brand-logos img {
+    margin: 0 150px;
+}
+
+.brand-logos .ones {
+    width: 70px;
+}
+
+.brand-logos .twos {
+    width: 70px;
+    height: 35px;
+    margin-top: 15px;
+}
+
+.perks {
+    margin: 40px 0;
+}
+
+.perks div {
+    width: 20%;
+    border-color: #343a40;
+    border-style: solid;
+    border-width: 1px 0 ;
+    padding: 30px;
+}
+
+.perks i {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.connect > div {
+    border-radius: 20px;
+    height: 190px;
+    width: 45%;
+    margin: 20px auto;
+}
+
+.connect form input, .connect form button {
+    border: none;
+    outline: none;
+    padding: 7px;
+}
+
+.connect form input {
+    border-radius: 10px 0 0 10px;
+}
+
+.connect form button {
+    border-radius: 0 10px 10px 0;
+}
+
+.connect .icons {
+    width: 70%;
+    margin: auto;
+}
+
+.connect i {
+    font-size: 25px;
+    line-height: 40px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #3b71ff;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.connect i:hover {
+    background-color: #2e499d;
+}
+
+@keyframes rotate {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-370px * 8));
+    }
+  }
+
+@media (max-width:768px) {
+    .break-container{
+        flex-direction: column !important;
+    }
+    .break-container img {
+        width: 100% !important;
+    }
+    .perks div {
+        width: 45%;
+    }
+}
+@media (max-width:820px) {
+    .connect {
+        flex-direction: column !important;
+    }
+    .connect > div {
+        width: 100%;
+    }
+}
+@media (max-width:576px) {
+    .perks div {
+        width: 95%;
+    }
+}
+
+/* ////////////////////////////// credentials ////////////////////////////// */
+
+.credentials {
+    width: 70%; 
+    background-color: #e9e8e8;
+}
+
+.credentials h1 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.credentials form {
+    width: 70%; 
+    margin: auto;
+    padding: 50px;
+}
+
+#log_in {
+    width: 50%;
+    transform: translate(50%);
+}
+
+.credentials p {
+    text-align: center;
+    margin: 10px 0 -5px 0;
+}
+
+@media (max-width:768px) {
+    .credentials {
+        width: 100%;
+    }
+    .credentials form {
+        width: 100%;
+    }
+}
+
+/* ////////////////////////////// products ////////////////////////////// */
+
+.help-banner {
+    width: 70%;
+    border-radius: 15px;
+    margin: 20px auto 20px 50%;
+    transform: translateX(-50%);
+}
+
+.image-wrapper {
+    position: relative;
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.prod-crd:hover .img-overlay {
+    opacity: 1;
+}
+
+.prod-crd {
+    transition: 0.5s;
+}
+
+.prod-crd:hover {
+    transform: scale(1.05, 1.05);
+}
+
+.prod-crd {
+    position: relative;
+}
+
+.heart-icon {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 5px 0 gray;
+    transform: scale(0.95238, 0.95238);
+}
+
+.heart-icon i {
+    line-height: 35px;
+}
+
+.red-heart {
+    color: red;
+}
+
+.grey-heart {
+    color: rgb(161, 161, 161);
+}
+
+.buy-now {
+    background-color: #09b1ef;
+}
+
+.buy-now:hover {
+    background-color: #09b1ef !important;
+    opacity: 0.8;
+}
+
+.toast {
+    background-color: rgba(40, 167, 69, 0.9);
+}
+
+@media (max-width:576px) {
+    .help-banner {
+        width: 100%;
+    }
+}
+
+/* ////////////////////////////// cart ////////////////////////////// */
+
+.cart-info {
+    width: 70%;
+}
+
+.prod-specs {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin-top: -10px;
+}
+
+.remove-btn {
+    margin-bottom: 10px;
+}
+
+@media (max-width:1200px) {
+    .qty i {
+        margin: 0 5px !important;
+    }
+}
+@media (max-width:991px) {
+    .qty i {
+        margin: 0 15px !important;
+    }
+}
+@media (min-width:515px) {
+    .cart-prods .cart-prod{
+        min-width: 515px;
+    }
+}
+@media (max-width:515px) {
+    .cart-prods .cart-prod {
+        height: fit-content !important;
+    }
+    .bttn {
+        margin-bottom: 1.5rem;
+    }
+    .cart-prods .cart-prod .image, .cart-prods .cart-prod img  {
+        width: 100%;
+    }
+
+    .cart-prods .cart-prod .image {
+        height: 50% !important;
+    }
+    .cart-prods .cart-prod img  {
+        height: 100% !important;
+    }
+    .qty i {
+        margin: 0 5px !important;
+    }
+}
+
+/* ////////////////////////////// credentials ////////////////////////////// */
+
+
+.profile div {
+    margin: 20px 0;
+    padding: 10px 20px;
+
+    border: 1px solid #D5D9D9;
+    border-radius: 8px;
+
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile div:hover {
+    background-color: #eee;
+}
+
+/* ////////////////////////////// footer ////////////////////////////// */
+
+footer {
+    width: 100%;
+    height: 300px;
+    background-color: black;
+    
+}
