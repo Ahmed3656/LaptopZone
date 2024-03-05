@@ -16,6 +16,7 @@ function Cart({cartItems, setCartItems, cartCtr, setCartCtr}) {
             setCartItems(updatedCartItems);
         }
     }
+
     function less(id) {
         const idx = cartItems.findIndex((x) => x.id === id);
         if (idx !== -1) {
@@ -33,6 +34,7 @@ function Cart({cartItems, setCartItems, cartCtr, setCartCtr}) {
             }
         }
     }
+
     function removeItem(id) {
         const updatedCartItems = cartItems.filter((item)=> item.id !== id)
         setCartItems(updatedCartItems);
@@ -43,7 +45,7 @@ function Cart({cartItems, setCartItems, cartCtr, setCartCtr}) {
         setTotalPrice(newTotalPrice);
     }, [cartItems]);
     return (
-        <div className="container d-flex row justify-content-evenly m-auto mt-3">
+        <div className="cart-body container d-flex row justify-content-evenly m-auto mt-3">
             {cartItems.map((product, idx) => (
                     <div className="cart-prod my-3 rounded col-lg-5 col-md-12" style={{ position: "relative", backgroundColor: "#e9e8e8", minHeight: "175px" }}>
                     <div className="image d-inline" style={{ float: "left" }}>

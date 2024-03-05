@@ -340,9 +340,13 @@ function Products({cartItems, favoriteItems, setCartItems, setfavoriteItems, car
         }
     }
 
+    function buyNow() {
+        alert("Payment Completed Successfully")
+    }
+
     return (
-        <div className="container-fluid">
-            <a className="m-auto" href="https://www.wired.com/story/how-to-buy-the-right-laptop-for-you/" target="_blank"><img className="help-banner" src={require("./images/helpbanner.webp")} alt="help banner" draggable="false" /></a>
+        <div className="container-fluid product-div">
+            <a className="m-auto help-banner-ref" href="https://www.wired.com/story/how-to-buy-the-right-laptop-for-you/" target="_blank"><img className="help-banner" src={require("./images/helpbanner.webp")} alt="help banner" draggable="false" /></a>
             <div className="container d-flex row justify-content-around m-auto mt-3">
                 {allProducts.map((product, idx) => (
                     <div className="prod-crd card my-3" style={{ width: "18rem" }} key={idx}>
@@ -358,7 +362,7 @@ function Products({cartItems, favoriteItems, setCartItems, setfavoriteItems, car
                             <p className="card-text">{product.specs}</p>
                             <div className="d-flex justify-content-between">
                                 <button id="liveToastBtn" className="btn btn-dark" onClick={() => addToCart(product.id)}>Add to cart</button>
-                                <button className="buy-now btn">Buy now</button>
+                                <button className="buy-now btn" onClick={() => buyNow()}>Buy now</button>
 
                             </div>
                         </div>

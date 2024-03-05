@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function Header({cartCtr, setCartCtr}) {
+function Header({cartCtr, setCartCtr, cartItems}) {
     const [LoggedIn, setLoggedIn] = useState(false);
     const cartCounter = useRef()
 
@@ -9,14 +9,10 @@ function Header({cartCtr, setCartCtr}) {
         setLoggedIn(loggedIn);
     }, []);
 
-    useEffect(() => {
-        if (cartCounter.current) {
-            cartCounter.current.style.display = (cartCtr === 0 ? "none" : "block");
-        }
-        else {
-            // cartCounter.current.style.display = "none";
-        }
-    }, [cartCtr]);
+    useEffect (() => {
+        const numOfItems = cartItems.reduce((num, item)=> num + item.qty, 0)
+        setCartCtr(numOfItems)
+    }, [cartItems])
     return (
         <nav className="header navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -44,7 +40,7 @@ function Header({cartCtr, setCartCtr}) {
                                 <li className="nav-item"><a className="nav-link active" href="/Favorites">Profile</a></li>
                                 <div className="cart-container">
                                     <li className="nav-item"><a className="nav-link active mx-3" href="/Cart"><i class="fas fa-shopping-cart"></i></a></li>
-                                    <span ref={cartCounter} className="cart-ctr text-light"></span>
+                                    <span ref={cartCounter} className="cart-ctr text-light" style={{ display: cartCtr === 0 ? 'none' : 'block' }}>{cartCtr}</span>
                                 </div>
                                 <li className="nav-item"><a className="nav-link active" href="#" onClick={()=>{localStorage.removeItem("loginStatus"); localStorage.removeItem("cart"); localStorage.removeItem("favorites"); setLoggedIn(false)}}>Logout</a></li>
                             </ul>

@@ -13,6 +13,7 @@ import Products from "./Products";
 import Favorites from "./Favorites";
 import Cart from "./Cart";
 import Header from "./Header";
+import Footer from "./Footer";
 
 function App() {
   const [cartCtr, setCartCtr] = useState(0)
@@ -36,7 +37,7 @@ function App() {
   }, [favoriteItems])
   return (
     <div>
-      <Header cartCtr={cartCtr} setCartCtr={setCartCtr} />
+      <Header cartCtr={cartCtr} setCartCtr={setCartCtr} cartItems={cartItems} />
       <BrowserRouter>
         <Routes>
         <Route index element={<Home />}/>
@@ -49,6 +50,7 @@ function App() {
           <Route path="/Cart" element={<Cart cartItems={cartItems} setCartItems={setCartItems} cartCtr={cartCtr} setCartCtr={setCartCtr}/>}/>
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
     
   );

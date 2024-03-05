@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
 function Favorites({cartItems, favoriteItems, setCartItems, setfavoriteItems, cartCtr, setCartCtr}) {
@@ -39,26 +40,78 @@ function Favorites({cartItems, favoriteItems, setCartItems, setfavoriteItems, ca
         }
     }
 
+    function buyNow(id) {
+        removeItem(id);
+        alert("Payment Completed Successfully")
+    }
+
+    const navigate = useNavigate()
+    const [showOrdersModal, setShowOrdersModal] = React.useState(false);
+    const [showPaymentModal, setShowPaymentModal] = React.useState(false);
+    const [showContactModal, setShowContactModal] = React.useState(false);
     return (
-        <div>
+        <div className="favorites-body">
             <div className="profile container d-flex justify-content-around">
-            <div className="orders">
-                <h2>View Orders</h2>
-                <i className="fas fa-box-open" style={{ fontSize: "40px" }}></i>
+                
+                <div className="orders" onClick={() => setShowOrdersModal(true)}>
+                    <h2>View Orders</h2>
+                    <i className="fas fa-box-open" style={{ fontSize: '40px' }}></i>
+                </div>
+                        
+                <div className="payments mx-3" onClick={() => setShowPaymentModal(true)}>
+                    <h2>Manage Your Payments</h2>
+                    <i className="fas fa-credit-card" style={{ fontSize: '40px' }}></i>
+                </div>
+
+                <div className="contact" onClick={() => setShowContactModal(true)}>
+                    <h2>Contact Us</h2>
+                    <i className="fas fa-headset" style={{ fontSize: '40px' }}></i>
+                </div>
+
+                {/* Orders Modal */}
+                <Modal show={showOrdersModal} onHide={() => setShowOrdersModal(false)}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Your Orders</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>0 past orders</Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowOrdersModal(false)}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={()=> navigate("/Cart")}>Place an order?</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                {/* Payment Modal */}
+                <Modal show={showPaymentModal} onHide={() => setShowPaymentModal(false)}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Wallet</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Balance: $0</Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowPaymentModal(false)}>
+                        Close
+                    </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                {/* Contact Modal */}
+                <Modal show={showContactModal} onHide={() => setShowContactModal(false)}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Contact Us</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <p>Phone: 0123456789</p>
+                    <p>Email: LaptopZone_support@gmail.com</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowContactModal(false)}>
+                        Close
+                    </Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
-
-            <div className="payments mx-3">
-                <h2>Manage Your Payments</h2>
-                <i className="fas fa-credit-card" style={{ fontSize: "40px" }}></i>
-            </div>
-
-            <div className="contact">
-                <h2>Contact Us</h2>
-                <i className="fas fa-headset" style={{ fontSize: "40px" }}></i>
-            </div>
-
-        </div>
-
+     
         <hr/><hr/>
 
             <div className="container d-flex row justify-content-around m-auto mt-3">
@@ -73,7 +126,7 @@ function Favorites({cartItems, favoriteItems, setCartItems, setfavoriteItems, ca
                                 <p className="card-text">{product.specs}</p>
                                 <div className="d-flex justify-content-between">
                                     <button className="btn btn-dark" onClick={()=> moveToCart(product.id)}>Move to cart</button>
-                                    <button className="buy-now btn">Buy now</button>
+                                    <button className="buy-now btn"  onClick={() => buyNow(product.id)}>Buy now</button>
                                 </div>
                             </div>
                         </div>
