@@ -374,6 +374,7 @@ function Products({cartItems, favoriteItems, setCartItems, setfavoriteItems, car
                         <div className="card-body prod-body">
                             <h5 className="card-title">{product.title}</h5>
                             <p className="card-text">{product.specs}</p>
+                            <p className="card-text" style={{ fontSize: "22px", marginTop: "-10px" }}><strong>${product.price}</strong></p>
                             <div className="d-flex justify-content-between">
                                 <button id="liveToastBtn" className="btn btn-dark" onClick={() => addToCart(product.id)}>Add to cart</button>
                                 <button className="buy-now btn" onClick={() => buyNow()}>Buy now</button>
