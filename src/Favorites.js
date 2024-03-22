@@ -78,7 +78,7 @@ function Favorites({cartItems, favoriteItems, setCartItems, setfavoriteItems, ca
                     <Button variant="secondary" onClick={() => setShowOrdersModal(false)}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={()=> navigate("/Cart")}>Place an order?</Button>
+                    <Button variant="primary" onClick={()=> {navigate("/Cart"); window.scrollTo(0, 0);}}>Place an order?</Button>
                     </Modal.Footer>
                 </Modal>
 

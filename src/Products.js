@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import { Toast } from 'react-bootstrap';
 
 function Products({cartItems, favoriteItems, setCartItems, setfavoriteItems, cartCtr, setCartCtr}) {
@@ -302,41 +303,54 @@ function Products({cartItems, favoriteItems, setCartItems, setfavoriteItems, car
         },
     ]
 
+    const navigate = useNavigate();
     const [showToast, setShowToast] = useState(false);
 
     const heartIconRefs = useRef([]);
 
     function addToCart(id) {
-        const product = allProducts.find(product => product.id === id);
-    
-        if (product) {
-            const found = cartItems.find(item => item.id === id);
-    
-            if (found) {
-                found.qty += 1;
-                setCartItems([...cartItems]);
-            } else {
-                product.qty = 1;
-                setCartItems(prevCartItems => [...prevCartItems, product]);
+        if(localStorage.getItem("loginStatus")) {
+            const product = allProducts.find(product => product.id === id);
+        
+            if (product) {
+                const found = cartItems.find(item => item.id === id);
+        
+                if (found) {
+                    found.qty += 1;
+                    setCartItems([...cartItems]);
+                } else {
+                    product.qty = 1;
+                    setCartItems(prevCartItems => [...prevCartItems, product]);
+                }
+                setShowToast(true)
             }
-            setShowToast(true)
+        }
+        else {
+            navigate("/Login")
+            window.scrollTo(0, 0);
         }
     }
 
     function addToFavorites(id) {
-        const product = allProducts.find(product => product.id === id);
-        
-        if (product) {
-            const heartIcon = heartIconRefs.current[id - 1];
-            const found = favoriteItems.find((fav)=> fav.id === id)
+        if(localStorage.getItem("loginStatus")) {
+            const product = allProducts.find(product => product.id === id);
             
-            if (found) {
-                heartIcon.style.color = 'rgb(161, 161, 161)';
-                setfavoriteItems(prevFavoriteItems => prevFavoriteItems.filter(item => item.id !== id));
-            } else {
-                heartIcon.style.color = 'red'; 
-                setfavoriteItems(prevFavoriteItems => [...prevFavoriteItems, product]);
+            if (product) {
+                const heartIcon = heartIconRefs.current[id - 1];
+                const found = favoriteItems.find((fav)=> fav.id === id)
+                
+                if (found) {
+                    heartIcon.style.color = 'rgb(161, 161, 161)';
+                    setfavoriteItems(prevFavoriteItems => prevFavoriteItems.filter(item => item.id !== id));
+                } else {
+                    heartIcon.style.color = 'red'; 
+                    setfavoriteItems(prevFavoriteItems => [...prevFavoriteItems, product]);
+                }
             }
+        }
+        else {
+            navigate("/Login")
+            window.scrollTo(0, 0);
         }
     }
 

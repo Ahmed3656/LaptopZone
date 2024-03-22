@@ -187,7 +187,7 @@ function Home() {
                 className="swiper-container"
             >
                 {bestSellers.map((item, index) => (
-                    <SwiperSlide key={index} className="best-seller-slide" onClick={()=>{navigate("/Products")}}>
+                    <SwiperSlide key={index} className="best-seller-slide" onClick={()=>{navigate("/Products"); window.scrollTo(0, 0);}}>
                         <div className="best-seller card my-3 m-auto bg-dark text-light" style={{ width: "18rem" }}>
                         <img src={item.image} className="card-img-top" alt="..." draggable="false"/>
                         <div className="card-body">
@@ -216,7 +216,7 @@ function Home() {
                 className="swiper-container"
             >
                 {premiumLaptops.map((item, index) => (
-                    <SwiperSlide key={index} className="best-seller-slide" onClick={()=>{navigate("/Products")}}>
+                    <SwiperSlide key={index} className="best-seller-slide" onClick={()=>{navigate("/Products"); window.scrollTo(0, 0);}}>
                         <div className="best-seller card my-3 m-auto bg-dark text-light" style={{ width: "18rem" }}>
                         <img src={item.image} className="card-img-top" alt="..." draggable="false"/>
                         <div className="card-body">
